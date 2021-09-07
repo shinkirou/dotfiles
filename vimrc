@@ -111,7 +111,7 @@ syntax on
 " ==================== netrw ====================
 
 let g:netrw_banner = 0
-let g:netrw_liststyle = 0
+let g:netrw_liststyle = 3
 let g:netrw_browse_split = 4				" open netrw in a vertical split
 let g:netrw_winsize = 20
 let g:netrw_altv = 1
@@ -120,7 +120,7 @@ let g:netrw_altv = 1
 "   autocmd VimEnter * :20Lexplore
 " augroup END
 
-nnoremap <leader>f :20Lexplore <CR>
+nnoremap <leader>n :20Lexplore<CR>
 
 " ==================== airline ====================
 
@@ -134,8 +134,8 @@ if g:remoteSession
   let g:airline_powerline_fonts=1
 endif
 
-let g:airline#extensions#tabline#enabled=1
-let g:airline#extensions#tabline#buffer_nr_show=1
+" let g:airline#extensions#tabline#enabled=1
+" let g:airline#extensions#tabline#buffer_nr_show=1
 let g:airline#extensions#whitespace#enabled=0
 
 let g:airline_symbols.maxlinenr=''
@@ -145,4 +145,9 @@ let g:airline_symbols.maxlinenr=''
 let g:ale_linters = {
 \	'java': []
 \ }
+
+" ==================== fzf ====================
+
+nnoremap <C-p> :Files<CR>
+nnoremap <leader>b :Buffers<CR>
 
