@@ -1,7 +1,7 @@
 SHELL = bash
 
 .PHONY: all
-all: alacritty vim
+all: alacritty vim i3
 
 .PHONY: alacritty
 alacritty:
@@ -9,7 +9,14 @@ alacritty:
 	ln -vsf ${HOME}/dotfiles/alacritty/alacritty.yml ${HOME}/.config/alacritty/alacritty.yml
 
 .PHONY: vim
-vim: # Set up symlinks for user .vimrc.
+vim:
 	ln -vsf ${HOME}/dotfiles/vimrc ${HOME}/.vimrc
+	if ! [ -f ${HOME}/.vim/autoload/plug.vim ]; then \
+ 	 	curl -LSso ${HOME}/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim; \
+	fi
 
+.PHONY: i3
+i3:
+	mkdir -p ${HOME}/.config/i3
+	ln -vsf ${HOME}/dotfiles/i3/config ${HOME}/.config/i3/config
 
