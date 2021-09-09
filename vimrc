@@ -76,6 +76,9 @@ noremap <Left> <Nop>
 noremap <Right> <Nop>
 noremap <Up> <Nop>
 
+" Disable ctrl-b
+noremap <C-B> <Nop>
+
 let mapleader = ","
 
 " Remove search highlight

@@ -1,7 +1,7 @@
 SHELL = bash
 
 .PHONY: all
-all: alacritty vim i3
+all: alacritty vim i3 tmux
 
 .PHONY: alacritty
 alacritty:
@@ -19,4 +19,14 @@ vim:
 i3:
 	mkdir -p ${HOME}/.config/i3
 	ln -vsf ${HOME}/dotfiles/i3/config ${HOME}/.config/i3/config
+
+.PHONY: tmux
+tmux:
+	ln -vsf ${HOME}/dotfiles/tmux.conf ${HOME}/.tmux.conf
+	if [ ! -d ${HOME}/.tmux/plugins/tpm ] ; then \
+		git clone https://github.com/tmux-plugins/tpm ${HOME}/.tmux/plugins/tpm; \
+	else \
+	    cd ${HOME}/.tmux/plugins/tpm; \
+		git pull https://github.com/tmux-plugins/tpm; \
+	fi
 
