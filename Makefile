@@ -1,7 +1,7 @@
 SHELL = bash
 
 .PHONY: all
-all: alacritty vim i3 tmux
+all: alacritty vim i3 tmux dunst rofi
 
 .PHONY: alacritty
 alacritty:
@@ -29,4 +29,16 @@ tmux:
 	    cd ${HOME}/.tmux/plugins/tpm; \
 		git pull https://github.com/tmux-plugins/tpm; \
 	fi
+
+.PHONY: dunst
+dunst:
+	mkdir -p ${HOME}/.config/dunst
+	ln -vsf ${HOME}/dotfiles/dunst/dunstrc ${HOME}/.config/dunst/dunstrc
+
+.PHONY: rofi
+rofi:
+	mkdir -p ${HOME}/.config/rofi
+	ln -vsf ${HOME}/dotfiles/rofi/config.rasi ${HOME}/.config/rofi/config.rasi
+	ln -vsf ${HOME}/dotfiles/rofi/colors.rasi ${HOME}/.config/rofi/colors.rasi
+	ln -vsf ${HOME}/dotfiles/rofi/networkmenu.rasi ${HOME}/.config/rofi/networkmenu.rasi
 
