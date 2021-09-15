@@ -1,7 +1,7 @@
 SHELL = bash
 
 .PHONY: all
-all: alacritty vim i3 tmux dunst rofi
+all: alacritty vim i3 tmux dunst rofi mpv
 
 .PHONY: alacritty
 alacritty:
@@ -41,4 +41,10 @@ rofi:
 	ln -vsf ${HOME}/dotfiles/rofi/config.rasi ${HOME}/.config/rofi/config.rasi
 	ln -vsf ${HOME}/dotfiles/rofi/colors.rasi ${HOME}/.config/rofi/colors.rasi
 	ln -vsf ${HOME}/dotfiles/rofi/networkmenu.rasi ${HOME}/.config/rofi/networkmenu.rasi
+
+.PHONY: mpv
+mpv:
+	mkdir -p ${HOME}/.config/mpv
+	ln -vsf ${HOME}/dotfiles/mpv/mpv.conf ${HOME}/.config/mpv/mpv.conf
+	ln -vsf ${HOME}/dotfiles/mpv/input.conf ${HOME}/.config/mpv/input.conf
 
