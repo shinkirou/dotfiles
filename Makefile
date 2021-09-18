@@ -1,7 +1,7 @@
 SHELL = bash
 
 .PHONY: all
-all: alacritty vim i3 tmux dunst rofi mpv
+all: alacritty vim i3 tmux dunst rofi mpv picom polybar
 
 .PHONY: alacritty
 alacritty:
@@ -47,4 +47,16 @@ mpv:
 	mkdir -p ${HOME}/.config/mpv
 	ln -vsf ${HOME}/dotfiles/mpv/mpv.conf ${HOME}/.config/mpv/mpv.conf
 	ln -vsf ${HOME}/dotfiles/mpv/input.conf ${HOME}/.config/mpv/input.conf
+
+.PHONY: picom
+picom:
+	mkdir -p ${HOME}/.config/picom
+	ln -vsf ${HOME}/dotfiles/picom/picom.conf ${HOME}/.config/picom/picom.conf
+
+.PHONY: polybar
+polybar:
+	mkdir -p ${HOME}/.config/polybar
+	ln -vsf ${HOME}/dotfiles/polybar/config ${HOME}/.config/polybar/config
+	ln -vsf ${HOME}/dotfiles/polybar/colors.ini ${HOME}/.config/polybar/colors.ini
+	ln -vsf ${HOME}/dotfiles/polybar/launch.sh ${HOME}/.config/polybar/launch.sh
 

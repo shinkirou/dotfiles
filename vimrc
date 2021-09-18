@@ -18,6 +18,7 @@ set autowrite					" automatically save before :next, :make, etc
 set autoread					" automatically reread changed files
 set laststatus=2
 set hidden						" hide buffers instead of closing them
+set autochdir					" automatically change the working dir to the current file dir
 
 set splitright					" split vertical windows to the right
 set splitbelow					" split horizontal windows below
