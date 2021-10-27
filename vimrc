@@ -18,7 +18,7 @@ set autowrite					" automatically save before :next, :make, etc
 set autoread					" automatically reread changed files
 set laststatus=2
 set hidden						" hide buffers instead of closing them
-set autochdir					" automatically change the working dir to the current file dir
+" set autochdir					" automatically change the working dir to the current file dir
 
 set splitright					" split vertical windows to the right
 set splitbelow					" split horizontal windows below
@@ -98,11 +98,11 @@ call plug#begin(expand('~/.vim/plugged'))
 	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 	Plug 'tpope/vim-vinegar'
 	Plug 'dense-analysis/ale'
-	Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 	Plug 'tpope/vim-commentary'
 	Plug 'tpope/vim-surround'
 	Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 	Plug 'ntpeters/vim-better-whitespace'
+	Plug 'Valloric/YouCompleteMe', { 'do': './install.py --java-completer' }
 call plug#end()
 
 colorscheme nord
@@ -111,6 +111,10 @@ hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
 set cursorline
 
 syntax on
+
+" ==================== vim-polyglot ====================
+
+let g:csv_no_conceal = 1
 
 " ==================== netrw ====================
 
@@ -133,10 +137,11 @@ if !exists('g:airline_symbols')
 endif
 
 " use powerline fonts when not in an ssh session
-let g:remoteSession = ($STY == "")
-if g:remoteSession
-  let g:airline_powerline_fonts=1
-endif
+" let g:remoteSession = ($STY == "")
+" if g:remoteSession
+  " let g:airline_powerline_fonts=1
+" endif
+let g:airline_powerline_fonts=0
 
 " let g:airline#extensions#tabline#enabled=1
 " let g:airline#extensions#tabline#buffer_nr_show=1
@@ -146,14 +151,18 @@ let g:airline_symbols.maxlinenr=''
 
 " ==================== ale ====================
 
-let g:ale_lint_on_enter = 0
-let g:ale_lint_on_save = 0
+" let g:ale_lint_on_enter = 0
+" let g:ale_lint_on_save = 0
 let g:ale_sign_error = '●'
 let g:ale_sign_warning = '.'
 
 let g:ale_linters = {
-\	'java': []
+\	'java': [],
+\	'python': ['flake8'],
 \ }
+
+let g:ale_python_flake8_options = '--max-line-length=120'
+let g:pymode_lint_ignore = "E501,W"
 
 nnoremap <leader>l :ALEToggle<CR>
 
@@ -161,4 +170,13 @@ nnoremap <leader>l :ALEToggle<CR>
 
 nnoremap <C-p> :Files<CR>
 nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>r :Rg<CR>
+
+" ==================== ycm ====================
+
+nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
+
+let g:ycm_auto_hover = ''
+nmap <leader>k <plug>(YCMHover)
 
