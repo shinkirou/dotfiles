@@ -30,10 +30,10 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # exec --no-startup-id nm-applet
 
 # Start picom.
-exec --no-startup-id picom
+exec_always --no-startup-id picom --config ~/.config/picom/picom.conf
 
 # Start polkit.
-exec --no-startup-id /lib/x86_64-linux-gnu/polkit-mate/polkit-mate-authentication-agent-1
+exec --no-startup-id /lib/mate-polkit/polkit-mate-authentication-agent-1
 
 # Start redshift.
 exec --no-startup-id redshift-gtk
@@ -45,7 +45,7 @@ exec --no-startup-id redshift-gtk
 # exec --no-startup-id ~/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox --minimize
 
 # Start mate settings daemon.
-exec --no-startup-id mate-settings-daemon
+exec --no-startup-id /usr/lib/mate-settings-daemon/mate-settings-daemon
 
 # Start dunst.
 exec --no-startup-id dunst -config ~/.config/dunst/dunstrc

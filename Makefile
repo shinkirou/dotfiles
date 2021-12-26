@@ -59,4 +59,6 @@ polybar:
 	ln -vsf ${HOME}/dotfiles/polybar/config ${HOME}/.config/polybar/config
 	ln -vsf ${HOME}/dotfiles/polybar/colors.ini ${HOME}/.config/polybar/colors.ini
 	ln -vsf ${HOME}/dotfiles/polybar/launch.sh ${HOME}/.config/polybar/launch.sh
+	ln -vsf ${HOME}/dotfiles/polybar/vpn-networkmanager-status.sh ${HOME}/.config/polybar/vpn-networkmanager-status.sh
+	ln -vsf ${HOME}/dotfiles/polybar/pipewire.sh ${HOME}/.config/polybar/pipewire.sh
 

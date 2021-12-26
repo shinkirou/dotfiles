@@ -1,5 +1,4 @@
 env:
-  # TERM variable
   TERM: xterm-256color
 
 colors:
@@ -55,28 +54,33 @@ background_opacity: 0.95
 
 font:
   normal:
-    # family: "RobotoMono Nerd Font"
-    family: "Iosevka Fixed"
-    style: Medium Extended
+    family: "Iosevka Nerd Font"
+    style: Medium
   bold:
-    # family: "RobotoMono Nerd Font"
-    family: "Iosevka Fixed"
-    style: Bold Extended
+    family: "Iosevka Nerd Font"
+    style: Bold
   italic:
-    # family: "RobotoMono Nerd Font"
-    family: "Iosevka Fixed"
-    style: Italic Extended
+    family: "Iosevka Nerd Font"
+    style: Italic
   bold_italic:
-    # family: "RobotoMono Nerd Font"
-    family: "Iosevka Fixed"
-    style: Bold Italic Extended
+    family: "Iosevka Nerd Font"
+    style: Bold Italic
 
   # Point size
-  size: 12.0
+  size: 13.0
 
   offset:
     x: 0
-    y: 4
+    y: 0
+
+  # Note: This requires RESTART
+  # By default when you change the offset above you'll see an issue, where the texts are bottom
+  # aligned with the cursor, this is to make sure they center align.
+  # This offset should usually be 1/2 of the above offset-y being set.
+  glyph_offset:
+    x: 0
+    # Keeping this as half of offset to vertically align the text in cursor
+    y: 0
 
 window:
   padding:
@@ -86,7 +90,7 @@ window:
 scrolling:
   # Maximum number of lines in the scrollback buffer.
   # Specifying '0' will disable scrolling.
-  history: 10000
+  history: 100000
 
   # Number of lines the viewport will move for every line scrolled when
   # scrollback is enabled (history > 0).

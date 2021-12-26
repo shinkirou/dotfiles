@@ -18,7 +18,6 @@ set autowrite					" automatically save before :next, :make, etc
 set autoread					" automatically reread changed files
 set laststatus=2
 set hidden						" hide buffers instead of closing them
-" set autochdir					" automatically change the working dir to the current file dir
 
 set splitright					" split vertical windows to the right
 set splitbelow					" split horizontal windows below
@@ -100,9 +99,11 @@ call plug#begin(expand('~/.vim/plugged'))
 	Plug 'dense-analysis/ale'
 	Plug 'tpope/vim-commentary'
 	Plug 'tpope/vim-surround'
+	Plug 'tpope/vim-fugitive'
 	Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 	Plug 'ntpeters/vim-better-whitespace'
 	Plug 'Valloric/YouCompleteMe', { 'do': './install.py --java-completer' }
+	Plug 'vimwiki/vimwiki'
 call plug#end()
 
 colorscheme nord
@@ -137,11 +138,11 @@ if !exists('g:airline_symbols')
 endif
 
 " use powerline fonts when not in an ssh session
-" let g:remoteSession = ($STY == "")
-" if g:remoteSession
-  " let g:airline_powerline_fonts=1
-" endif
-let g:airline_powerline_fonts=0
+let g:remoteSession = ($STY == "")
+if g:remoteSession
+  let g:airline_powerline_fonts=1
+endif
+" let g:airline_powerline_fonts=0
 
 " let g:airline#extensions#tabline#enabled=1
 " let g:airline#extensions#tabline#buffer_nr_show=1
@@ -180,3 +181,7 @@ nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
 let g:ycm_auto_hover = ''
 nmap <leader>k <plug>(YCMHover)
 
+" ==================== vimwiki ====================
+
+let g:vimwiki_list = [{'path': '~/Documents/Resources/vimwiki',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]

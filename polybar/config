@@ -1,9 +1,10 @@
 include-file = ~/.config/polybar/colors.ini
 
+
 [bar/bar]
 enable-ipc = true
 modules-left = i3 sep cpu sep memory sep filesystem
-modules-right = wired-network sep wireless-network sep pulseaudio sep backlight sep battery sep date sep powermenu sep
+modules-right = wired-network wireless-network vpn-networkmanager-status sep pipewire sep backlight sep battery sep date sep powermenu sep
 
 width = 100%
 height = 32
@@ -19,10 +20,10 @@ padding-right = 0
 module-margin-left = 1
 module-margin-right = 1
 
-font-0 = Roboto-Medium:size=12;3
+font-0 = Roboto:style=Regular:size=12;3
 font-1 = MaterialIcons:size=12;4
 font-2 = FontAwesome:size=12;2
-font-3 = Siji:pixelsize=12;4
+font-3 = "Wuncon Siji:pixelsize=12;4"
 
 font-4 = FontAwesome:size=12;3
 
@@ -53,6 +54,7 @@ date = %Y-%m-%d %H:%M:%S
 type = internal/backlight
 card = intel_backlight
 enable-scroll = true
+
 format = <ramp>  <label>
 label =  %percentage%%
 ramp-0 = %{T5}%{T-}
@@ -153,79 +155,16 @@ animation-charging-4 = 
 animation-charging-4-foreground = ${color.indigo}
 animation-charging-framerate = 750
 
-[module/pulseaudio]
-type = internal/pulseaudio
-
-; Sink to be used, if it exists (find using `pacmd list-sinks`, name field)
-; If not, uses default sink
-sink = alsa_output.pci-0000_12_00.3.analog-stereo
-
-; Use PA_VOLUME_UI_MAX (~153%) if true, or PA_VOLUME_NORM (100%) if false
-; Default: true
-use-ui-max = false
-
-; Interval for volume increase/decrease (in percent points)
-; Default: 5
-interval = 2
-
-; Available tags:
-;   <label-volume> (default)
-;   <ramp-volume>
-;   <bar-volume>
-format-volume = <ramp-volume>  <label-volume>
-
-; Available tags:
-;   <label-muted> (default)
-;   <ramp-volume>
-;   <bar-volume>
-format-muted = <label-muted>
-format-muted-prefix = 
-format-muted-foreground = ${color.blue}
-
-; Available tokens:
-;   %percentage% (default)
-;   %decibels%
-;label-volume = %percentage%%
-
-; Available tokens:
-;   %percentage% (default)
-;   %decibels%
-label-muted = " muted"
-label-muted-foreground = ${color.foreground-sec}
-
-; Only applies if <ramp-volume> is used
-ramp-volume-0 = 
-ramp-volume-1 = 
-ramp-volume-2 = 
-ramp-volume-foreground = ${color.blue}
-
-; Right and Middle click
-click-right = pavucontrol
-; click-middle =
-
-[module/alsa]
-type = internal/alsa
-master-soundcard = default
-speaker-soundcard = default
-headphone-soundcard = default
-master-mixer = Master
-
-speaker-mixer = Speaker
-headphone-mixer = Headphone
-
-headphone-id = 9
-
-format-volume = <ramp-volume> <label-volume>
-label-muted =   muted
-label-muted-foreground = ${color.sep}
-
-ramp-volume-0 = 
-ramp-volume-1 = 
-ramp-volume-2 = 
-ramp-volume-3 = 
-
-ramp-headphones-0 = 
-ramp-headphones-1 = 
+[module/pipewire]
+type = custom/script
+label = "%output%"
+label-font = 0
+interval = 0.5
+exec = ~/.config/polybar/pipewire.sh
+click-right = exec pavucontrol &
+click-left = ~/.config/polybar/pipewire.sh mute &
+scroll-up = ~/.config/polybar/pipewire.sh up &
+scroll-down = ~/.config/polybar/pipewire.sh down &
 
 [module/filesystem]
 type = internal/fs
@@ -442,6 +381,7 @@ format-connected-prefix-foreground = ${color.purple}
 ;   <label-disconnected> (default)
 format-disconnected = <label-disconnected>
 format-disconnected-prefix = 
+; format-disconnected-prefix = %{T3}%{T-}
 format-disconnected-prefix-foreground = ${color.orange}
 
 ; Available tags:
@@ -460,12 +400,13 @@ format-disconnected-prefix-foreground = ${color.orange}
 ;   %downspeed% [wireless+wired]
 ;   %linkspeed% [wired]
 ; Default: %ifname% %local_ip%
-label-connected = "%{A1:~/.local/bin/networkmanager_dmenu &:} %ifname% %{F#6C77BB}%{F-} %downspeed% %{F#6C77BB}%{F-} %upspeed%%{A}"
+label-connected = "%{A1:~/.local/bin/networkmanager_dmenu &:} %ifname% %{F#6C77BB}%{F-} %downspeed% %{F#6C77BB}%{F-} %upspeed%%{A} %{F#3F5360}  |%{F-}"
 
 ; Available tokens:
 ;   %ifname%    [wireless+wired]
 ; Default: (none)
-label-disconnected = "%{A3:~/.local/bin/networkmanager_dmenu &:} Offline%{A}"
+label-disconnected = "%{A3:~/.local/bin/networkmanager_dmenu &:} Offline%{A} %{F#3F5360}  |%{F-}"
+; label-disconnected = "%{A3:~/.local/bin/networkmanager_dmenu &:} %{A}"
 
 ; Available tokens:
 ;   %ifname%    [wireless+wired]
@@ -496,7 +437,7 @@ ramp-signal-2 =
 ; Normal Module
 [module/wireless-network]
 type = internal/network
-interface = wlp0s20f3
+interface = wlan0
 ; Seconds to sleep between updates
 ; Default: 1
 interval = 1.0
@@ -522,7 +463,7 @@ unknown-as-up = true
 ;   <label-connected> (default)
 ;   <ramp-signal>
 format-connected = <label-connected>
-format-connected-prefix = 
+format-connected-prefix =
 format-connected-prefix-foreground = ${color.purple}
 
 ; Available tags:
@@ -547,12 +488,12 @@ format-disconnected-prefix-foreground = ${color.orange}
 ;   %downspeed% [wireless+wired]
 ;   %linkspeed% [wired]
 ; Default: %ifname% %local_ip%
-label-connected = "%{A1:~/.local/bin/networkmanager_dmenu &:} %essid% %{F#6C77BB}%{F-} %downspeed% %{F#6C77BB}%{F-} %upspeed%%{A}"
+label-connected = "%{A1:networkmanager_dmenu &:} %essid% %{F#6C77BB}%{F-} %downspeed% %{F#6C77BB}%{F-} %upspeed%%{A}"
 
 ; Available tokens:
 ;   %ifname%    [wireless+wired]
 ; Default: (none)
-label-disconnected = "%{A3:~/.local/bin/networkmanager_dmenu &:} Offline%{A}"
+label-disconnected = "%{A3:networkmanager_dmenu &:} Offline%{A}"
 
 ; Available tokens:
 ;   %ifname%    [wireless+wired]
@@ -580,6 +521,10 @@ ramp-signal-2 =
 ; Framerate in milliseconds
 ;;animation-packetloss-framerate = 500
 
+[module/vpn-networkmanager-status]
+type = custom/script
+exec = ~/.config/polybar/vpn-networkmanager-status.sh
+interval = 5
 
 [module/powermenu]
 type = custom/menu

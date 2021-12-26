@@ -1,7 +1,7 @@
 configuration {
  modi: 			"combi";
  show:          "combi";
- font: 			"roboto mono regular 11";
+ font: 			"roboto regular 12";
  combi-modi: 	"drun,window,ssh";
  show-icons: 	true;
  icon-theme: 	"papirus dark";
@@ -27,7 +27,7 @@ prompt {
     padding:                        0px;
     background-color:               @bga;
     text-color:                     @fg;
-    font:                           "roboto mono bold 11";
+    font:                           "roboto bold 12";
 }
 
 entry {
@@ -85,6 +85,8 @@ element {
 element-icon {
     size:                           16px;
     border:                         0px;
+    background-color:               inherit;
+    text-color:                     inherit;
 }
 
 element-text {
@@ -92,6 +94,8 @@ element-text {
     horizontal-align:               0;
     vertical-align:                 0;
     margin:                         0px 2.5px 0px 2.5px;
+    background-color:               inherit;
+    text-color:                     inherit;
 }
 
 element selected {

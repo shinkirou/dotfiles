@@ -29,7 +29,8 @@
     # the top and down respectively.
     # The width can be negative.  In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-    geometry = "500x5-30+50"
+    width = (0, 500)
+    offset = -30x50
 
     # Turn on the progess bar
     progress_bar = true
@@ -45,7 +46,7 @@
     progress_bar_min_width = 150
 
     # Set the maximum width for the progress bar
-    progress_bar_max_width = 300
+    progress_bar_max_width = 500
 
 
     # Show how many messages are currently hidden (because of geometry).
@@ -107,7 +108,7 @@
 
     ### Text ###
 
-    font = Roboto Regular 8
+    font = Roboto Regular 12
 
     # The spacing between lines.  If the height is smaller than the
     # font height, it will get raised to the font height.
@@ -296,7 +297,7 @@
     # dunst will attempt to calculate an appropriate dpi value for each monitor
     # using the resolution and physical size. This might be useful in setups
     # where there are multiple screens with very different dpi values.
-    per_monitor_dpi = true
+    # per_monitor_dpi = true
 
 # The internal keyboard shortcut support in dunst is now considered deprecated
 # and should be replaced by dunstctl calls. You can use the configuration of your

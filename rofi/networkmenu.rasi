@@ -1,5 +1,5 @@
 configuration {
-	font:							"roboto mono regular 11";
+	font:							"roboto regular 12";
     show-icons:                     true;
 	icon-theme: 					"papirus dark";
     display-drun: 					"";
@@ -30,7 +30,7 @@ prompt {
 	padding: 						0px 0px 0px 10px;
 	background-color: 				@bga;
 	text-color: 					@fg;
-    font:                           "roboto mono bold 11";
+    font:                           "roboto bold 12";
 }
 
 textbox-prompt-colon {
@@ -39,7 +39,7 @@ textbox-prompt-colon {
 	text-color: 					@ac;
 	expand: false;
 	str: "";
-	font:							"roboto mono bold 11";
+	font:							"roboto bold 12";
 }
 
 entry {
@@ -97,13 +97,16 @@ element {
 element-icon {
     size:                           16px;
     border:                         0px;
+    background-color:               inherit;
+    text-color:                     inherit;
 }
 
 element-text {
     expand:                         true;
     horizontal-align:               0;
-    vertical-align:                 0;
     margin:                         0px 2.5px 0px 2.5px;
+    background-color:               inherit;
+    text-color:                     inherit;
 }
 
 element selected {
