@@ -50,20 +50,20 @@ colors:
     cyan: '#6d96a5'
     white: '#aeb3bb'
 
-background_opacity: 0.95
+window.opacity: 0.95
 
 font:
   normal:
-    family: "Iosevka Nerd Font"
+    family: "Iosevka"
     style: Medium
   bold:
-    family: "Iosevka Nerd Font"
+    family: "Iosevka"
     style: Bold
   italic:
-    family: "Iosevka Nerd Font"
+    family: "Iosevka"
     style: Italic
   bold_italic:
-    family: "Iosevka Nerd Font"
+    family: "Iosevka"
     style: Bold Italic
 
   # Point size

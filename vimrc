@@ -42,6 +42,7 @@ set norelativenumber
 set wrap
 set textwidth=80
 set formatoptions=qrn1
+autocmd FileType tex set linebreak
 
 set tabstop=4
 set softtabstop=4				" multiple spaces as tabstops
@@ -69,6 +70,10 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
+" Remap gk and gj to j and k
+nnoremap j gj
+nnoremap k gk
 
 " Disable arrow keys
 noremap <Down> <Nop>
@@ -99,11 +104,11 @@ call plug#begin(expand('~/.vim/plugged'))
 	Plug 'dense-analysis/ale'
 	Plug 'tpope/vim-commentary'
 	Plug 'tpope/vim-surround'
-	Plug 'tpope/vim-fugitive'
 	Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 	Plug 'ntpeters/vim-better-whitespace'
 	Plug 'Valloric/YouCompleteMe', { 'do': './install.py --java-completer' }
 	Plug 'vimwiki/vimwiki'
+	Plug 'lervag/vimtex'
 call plug#end()
 
 colorscheme nord
@@ -138,11 +143,11 @@ if !exists('g:airline_symbols')
 endif
 
 " use powerline fonts when not in an ssh session
-let g:remoteSession = ($STY == "")
-if g:remoteSession
-  let g:airline_powerline_fonts=1
-endif
-" let g:airline_powerline_fonts=0
+" let g:remoteSession = ($STY == "")
+" if g:remoteSession
+  " let g:airline_powerline_fonts=1
+" endif
+let g:airline_powerline_fonts=0
 
 " let g:airline#extensions#tabline#enabled=1
 " let g:airline#extensions#tabline#buffer_nr_show=1
@@ -160,6 +165,8 @@ let g:ale_sign_warning = '.'
 let g:ale_linters = {
 \	'java': [],
 \	'python': ['flake8'],
+\	'c': ['gcc'],
+\	'latex': []
 \ }
 
 let g:ale_python_flake8_options = '--max-line-length=120'
@@ -185,3 +192,9 @@ nmap <leader>k <plug>(YCMHover)
 
 let g:vimwiki_list = [{'path': '~/Documents/Resources/vimwiki',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
+
+" ==================== vimtex ====================
+
+let g:tex_flavor='latex'
+let g:vimtex_view_general_viewer='atril'
+let g:vimtex_quickfix_mode=0

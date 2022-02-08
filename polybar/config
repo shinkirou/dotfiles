@@ -437,7 +437,7 @@ ramp-signal-2 =
 ; Normal Module
 [module/wireless-network]
 type = internal/network
-interface = wlan0
+interface = wlp0s20f3
 ; Seconds to sleep between updates
 ; Default: 1
 interval = 1.0
