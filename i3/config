@@ -38,17 +38,14 @@ exec --no-startup-id /lib/mate-polkit/polkit-mate-authentication-agent-1
 # Start redshift.
 exec --no-startup-id redshift-gtk
 
-# Start dropbox.
-# exec --no-startup-id dropbox start -i
-
-# Start jetbrains toolbox.
-# exec --no-startup-id ~/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox --minimize
-
 # Start mate settings daemon.
 exec --no-startup-id /usr/lib/mate-settings-daemon/mate-settings-daemon
 
 # Start dunst.
 exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
+
+# Start keepassxc.
+exec --no-startup-id keepassxc %f
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status

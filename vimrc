@@ -193,6 +193,10 @@ nmap <leader>k <plug>(YCMHover)
 let g:vimwiki_list = [{'path': '~/Documents/Resources/vimwiki',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 
+let g:wiki_viewer = {'pdf': 'atril'}
+let g:wiki_viewer = {'odp': 'libreoffice'}
+let g:wiki_viewer = {'pptx': 'libreoffice'}
+
 " ==================== vimtex ====================
 
 let g:tex_flavor='latex'

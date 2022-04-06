@@ -30,7 +30,7 @@
     # The width can be negative.  In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
     width = (0, 500)
-    offset = -30x50
+    offset = 30x50
 
     # Turn on the progess bar
     progress_bar = true
